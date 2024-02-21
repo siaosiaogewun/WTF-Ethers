@@ -19,6 +19,7 @@ for (let i = 0; i < numWallet; i++) {
     let hdNodeNew = hdNode.derivePath(basePath + "/" + i);
     let walletNew = new ethers.Wallet(hdNodeNew.privateKey);
     console.log(`第${i+1}个钱包地址： ${walletNew.address}`)
+    console.log(`第${i+1}个钱包地址： ${walletNew.privateKey}`)
     wallets.push(walletNew);
 }
 
@@ -37,4 +38,3 @@ console.log(json)
 const wallet2 = await ethers.Wallet.fromEncryptedJson(json, pwd);
 console.log("\n4. 从加密json读取钱包：")
 console.log(wallet2)
-
