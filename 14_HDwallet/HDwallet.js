@@ -1,4 +1,8 @@
+
 import { ethers } from "ethers";
+import fs from 'fs/promises';
+
+const filePath = 'output.txt';
 
 // 1. 创建HD钱包
 console.log("\n1. 创建HD钱包")
@@ -21,6 +25,14 @@ for (let i = 0; i < numWallet; i++) {
     console.log(`第${i+1}个钱包地址： ${walletNew.address}`)
     console.log(`第${i+1}个钱包地址： ${walletNew.privateKey}`)
     wallets.push(walletNew);
+
+    var addresslv = walletNew.address;
+    var privateKeylv = walletNew.privateKey;
+
+    const dataToWrite = `${addresslv}\n${privateKeylv}\n`;
+
+    await fs.appendFile(filePath, dataToWrite);
+
 }
 
 // 3. 保存钱包（加密json）
